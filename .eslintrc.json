@@ -75,17 +75,7 @@
     "max-len": ["warn", { "code": 100 }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "no-restricted-imports": [
-      "warn",
-      {
-        "paths": [
-          {
-            "name": "react",
-            "importNames": ["default"]
-          }
-        ]
-      }
-    ],
+    "no-restricted-imports": ["warn"],
     "react/require-default-props": "off",
     "react/function-component-definition": [
       "error",
