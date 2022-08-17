@@ -9,7 +9,7 @@ export const pageWrapper = () =>
   });
 
 export const cardWrapper = () => ({
-  mt: 16,
+  mt: 8,
   p: 4,
   maxWidth: 1200,
   height: 'fit-content',

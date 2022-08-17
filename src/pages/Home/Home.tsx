@@ -4,11 +4,15 @@ import { jsx } from '@emotion/react';
 import { Box, Button, Card, Typography } from '@mui/material';
 import AirportAutocomplete from 'components/AirportAutocomplete/AirportAutocomplete';
 import PageWrapper from 'components/Layout/PageWrapper';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AirportDTO, getAirports } from 'services/airports.service';
 import { getDistanceFromLatLon } from 'utils/distance.utils';
 
+import { useJsApiLoader, GoogleMap, Marker, Polyline } from '@react-google-maps/api';
+
 import * as styles from './Home.styles';
+
+const UNITED_STATES_CENTER = { lat: 39.8097343, lng: -98.5556199 };
 
 const Home = () => {
   const [from, setFrom] = useState<AirportDTO | null>(null);
@@ -31,6 +35,10 @@ const Home = () => {
     }
     getOptions();
   }, []);
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API as string,
+  });
 
   const handleCalculateDistance = () => {
     if (from && to) {
@@ -80,6 +88,28 @@ const Home = () => {
           </Typography>
         </Box>
       )}
+      <Box sx={{ width: '100%', maxWidth: 1200, height: '100%', mb: 4 }}>
+        {isLoaded ? (
+          <GoogleMap
+            center={UNITED_STATES_CENTER}
+            zoom={4}
+            mapContainerStyle={{ width: '100%', height: '100%' }}
+          >
+            {from && <Marker position={{ lat: from.latitude, lng: from.longitude }} />}
+            {to && <Marker position={{ lat: to.latitude, lng: to.longitude }} />}
+            {from && to && (
+              <Polyline
+                path={[
+                  { lat: from.latitude, lng: from.longitude },
+                  { lat: to.latitude, lng: to.longitude },
+                ]}
+              />
+            )}
+          </GoogleMap>
+        ) : (
+          <React.Fragment />
+        )}
+      </Box>
     </PageWrapper>
   );
 };
