@@ -72,23 +72,26 @@ const Home = () => {
         </Button>
       </Card>
 
-      {distance && from && to && (
-        <Box sx={styles.distanceWrapper}>
-          {'The distance between '}
-          <Typography component="span" fontWeight="bold">
-            {from.name}
-          </Typography>
-          {' and '}
-          <Typography component="span" fontWeight="bold">
-            {to.name}
-          </Typography>
-          {' is '}
-          <Typography component="span" fontWeight="bold">
-            {`${distance} NM.`}
-          </Typography>
-        </Box>
-      )}
-      <Box sx={{ width: '100%', maxWidth: 1200, height: '100%', mb: 4 }}>
+      <Box sx={styles.distanceWrapper}>
+        {distance && from && to && (
+          <React.Fragment>
+            {'The distance between '}
+            <Typography component="span" fontWeight="bold">
+              {from.name}
+            </Typography>
+            {' and '}
+            <Typography component="span" fontWeight="bold">
+              {to.name}
+            </Typography>
+            {' is '}
+            <Typography component="span" fontWeight="bold">
+              {`${distance} NM.`}
+            </Typography>
+          </React.Fragment>
+        )}
+      </Box>
+
+      <Box sx={styles.mapWrapper}>
         {isLoaded ? (
           <GoogleMap
             center={UNITED_STATES_CENTER}

@@ -9,10 +9,10 @@ export const pageWrapper = () =>
   });
 
 export const cardWrapper = () => ({
-  mt: 8,
   p: 4,
+  mt: 4,
+  minHeight: 120,
   maxWidth: 1200,
-  height: 'fit-content',
   display: 'flex',
   flexDirection: { lg: 'row', md: 'column', s: 'column', xs: 'column' },
   justifyContent: 'center',
@@ -29,4 +29,12 @@ export const button = () => ({
 
 export const distanceWrapper = () => ({
   textAlign: 'center',
+  minHeight: 25,
+});
+
+export const mapWrapper = () => ({
+  width: '100%',
+  maxWidth: 1200,
+  height: '100%',
+  mb: 4,
 });
