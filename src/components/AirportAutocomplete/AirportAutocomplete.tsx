@@ -27,6 +27,7 @@ const AirportAutocomplete = ({
 
   const filterOptions = createFilterOptions({
     matchFrom: 'any',
+    limit: 200,
     stringify: (option: AirportDTO) => option.name + option.iata,
   });
 
