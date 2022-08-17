@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/flex/airports/rest/v1/json/countryCode/*"
+  to = "https://api.flightstats.com/flex/airports/rest/v1/json/countryCode/:splat"
+  status = 200
+  force = true

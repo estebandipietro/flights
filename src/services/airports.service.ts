@@ -1,6 +1,5 @@
 const API_ID = process.env.REACT_APP_API_ID as string;
 const API_KEY = process.env.REACT_APP_API_KEY as string;
-const baseUrl = process.env.REACT_APP_API_URL as string;
 
 export interface AirportDTO {
   fs: string;
@@ -33,7 +32,7 @@ type GetAirportsResponse = {
 
 export async function getAirports(): Promise<GetAirportsResponse> {
   const response = await fetch(
-    `${baseUrl}/flex/airports/rest/v1/json/countryCode/US?appId=${API_ID}&appKey=${API_KEY}`,
+    `/flex/airports/rest/v1/json/countryCode/US?appId=${API_ID}&appKey=${API_KEY}`,
     {
       method: 'GET',
     }
