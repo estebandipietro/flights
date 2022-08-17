@@ -10,9 +10,11 @@ export const pageWrapper = () => ({
 
 export const cardWrapper = () => ({
   mt: 16,
+  p: 4,
   width: '50%',
-  height: '25%',
+  height: 'fit-content',
   display: 'flex',
+  flexDirection: { lg: 'row', md: 'column', s: 'column', xs: 'column' },
   justifyContent: 'center',
   alignItems: 'center',
   gap: '16px',
@@ -20,5 +22,7 @@ export const cardWrapper = () => ({
 });
 
 export const button = () => ({
-  height: 'fit-content',
+  height: '100%',
+  width: '100%',
+  maxWidth: 300,
 });

@@ -51,7 +51,7 @@ const AirportAutocomplete = ({
       onChange={(event: React.SyntheticEvent<Element, Event>, newValue: AirportDTO | null) => {
         setSelectedAirport(newValue);
       }}
-      sx={{ width: 300 }}
+      sx={{ width: '100%', maxWidth: 300, height: '100%' }}
       renderOption={(props, option) => (
         <li {...props} css={styles.optionWrapper} key={`${option.iata}${option.name}`}>
           <AutocompleteOption option={option} />
