@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Box, Button, Card } from '@mui/material';
+import { Box, Button, Card, Typography } from '@mui/material';
 import AirportAutocomplete from 'components/AirportAutocomplete/AirportAutocomplete';
 import { useEffect, useState } from 'react';
 import { AirportDTO, getAirports } from 'services/airports.service';
@@ -63,10 +63,20 @@ const Home = () => {
         </Button>
       </Card>
 
-      {distance && (
+      {distance && from && to && (
         <Box>
-          <span>The distance is </span>
-          {distance}
+          {'The distance between '}
+          <Typography component="span" fontWeight="bold">
+            {from.name}
+          </Typography>
+          {' and '}
+          <Typography component="span" fontWeight="bold">
+            {to.name}
+          </Typography>
+          {' is '}
+          <Typography component="span" fontWeight="bold">
+            {`${distance} NM.`}
+          </Typography>
         </Box>
       )}
     </Box>
