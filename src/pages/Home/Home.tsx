@@ -3,6 +3,7 @@
 import { jsx } from '@emotion/react';
 import { Box, Button, Card, Typography } from '@mui/material';
 import AirportAutocomplete from 'components/AirportAutocomplete/AirportAutocomplete';
+import PageWrapper from 'components/Layout/PageWrapper';
 import { useEffect, useState } from 'react';
 import { AirportDTO, getAirports } from 'services/airports.service';
 import { getDistanceFromLatLon } from 'utils/distance.utils';
@@ -39,7 +40,7 @@ const Home = () => {
   };
 
   return (
-    <Box sx={styles.pageWrapper}>
+    <PageWrapper css={styles.pageWrapper}>
       <Card sx={styles.cardWrapper}>
         <AirportAutocomplete
           options={options}
@@ -64,7 +65,7 @@ const Home = () => {
       </Card>
 
       {distance && from && to && (
-        <Box>
+        <Box sx={styles.distanceWrapper}>
           {'The distance between '}
           <Typography component="span" fontWeight="bold">
             {from.name}
@@ -79,7 +80,7 @@ const Home = () => {
           </Typography>
         </Box>
       )}
-    </Box>
+    </PageWrapper>
   );
 };
 

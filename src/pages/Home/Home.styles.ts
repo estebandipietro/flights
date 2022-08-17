@@ -1,17 +1,17 @@
-export const pageWrapper = () => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '16px',
-  height: '100%',
-  width: '100%',
-  bgcolor: 'grey.50',
-});
+import { css } from '@emotion/react';
+
+export const pageWrapper = () =>
+  css({
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: '16px',
+  });
 
 export const cardWrapper = () => ({
   mt: 16,
   p: 4,
-  width: '50%',
+  maxWidth: 1200,
   height: 'fit-content',
   display: 'flex',
   flexDirection: { lg: 'row', md: 'column', s: 'column', xs: 'column' },
@@ -25,4 +25,8 @@ export const button = () => ({
   height: '100%',
   width: '100%',
   maxWidth: 300,
+});
+
+export const distanceWrapper = () => ({
+  textAlign: 'center',
 });
