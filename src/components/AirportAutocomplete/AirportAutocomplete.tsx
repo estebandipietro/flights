@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 /* eslint-disable react/jsx-props-no-spreading */
-import { Autocomplete, CircularProgress, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, createFilterOptions, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { AirportDTO } from 'services/airports.service';
 import AutocompleteOption from './AutocompleteOption/AutocompleteOption';
@@ -25,8 +25,14 @@ const AirportAutocomplete = ({
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
 
+  const filterOptions = createFilterOptions({
+    matchFrom: 'any',
+    stringify: (option: AirportDTO) => option.name + option.iata,
+  });
+
   return (
     <Autocomplete
+      filterOptions={filterOptions}
       disablePortal
       id="combo-box-demo"
       open={open}
