@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+## Environment Variables
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To run this project you need three environment variables inside an `.env` file to be placed under the `root` folder of the project.
+
+### `REACT_APP_API_ID`
+
+Api id needed to call the api to get the airports from flightstats by Cirium
+
+### `REACT_APP_API_KEY`
+
+Api key needed to call the api to get the airports from flightstats by Cirium
+
+### `REACT_APP_GOOGLE_API`
+
+Google api key needed to display and interact with Maps JavaScript API.
 
 ## Available Scripts
 
@@ -29,18 +41,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `npm lint`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Lint all the files under `src` folder and apply autofix when possible
