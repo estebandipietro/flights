@@ -1,7 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { useJsApiLoader, GoogleMap, Marker, DirectionsRenderer } from '@react-google-maps/api';
+import {
+  useJsApiLoader,
+  GoogleMap,
+  Marker,
+  DirectionsRenderer,
+  Polyline,
+} from '@react-google-maps/api';
 import React, { useEffect, useState } from 'react';
 
 import { UNITED_STATES_CENTER } from 'constants/constants';
@@ -36,6 +42,7 @@ const MyGoogleMap = ({ from, to, setMap }: MyGoogleMapProps) => {
     }
 
     if (from && to) {
+      setDirectionsResponse(null);
       calculateRoute();
     }
   }, [from, to]);
@@ -53,6 +60,15 @@ const MyGoogleMap = ({ from, to, setMap }: MyGoogleMapProps) => {
           {to && <Marker position={{ lat: to.latitude, lng: to.longitude }} />}
           {from && to && directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
+          )}
+          {from && to && (
+            <Polyline
+              options={{ geodesic: true, strokeOpacity: 0.7, strokeWeight: 2 }}
+              path={[
+                { lat: from.latitude, lng: from.longitude },
+                { lat: to.latitude, lng: to.longitude },
+              ]}
+            />
           )}
         </GoogleMap>
       ) : null}
