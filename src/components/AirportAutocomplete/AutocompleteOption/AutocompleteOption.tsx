@@ -3,9 +3,10 @@
 import { jsx } from '@emotion/react';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { AirportDTO } from 'services/airports.service';
 
 import * as styles from './AutocompleteOption.styles';
+
+import { AirportDTO } from 'types/AirportType';
 
 interface AutocompleteOptionInterface {
   option: AirportDTO;

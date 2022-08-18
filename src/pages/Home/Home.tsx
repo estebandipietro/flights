@@ -1,18 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Box, Button, Card, Typography } from '@mui/material';
-import AirportAutocomplete from 'components/AirportAutocomplete/AirportAutocomplete';
-import PageWrapper from 'components/Layout/PageWrapper';
-import React, { useEffect, useState } from 'react';
-import { AirportDTO, getAirports } from 'services/airports.service';
-import { getDistanceFromLatLon } from 'utils/distance.utils';
-
-import { useJsApiLoader, GoogleMap, Marker, Polyline } from '@react-google-maps/api';
+import { Box, Button, Card } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 import * as styles from './Home.styles';
 
-const UNITED_STATES_CENTER = { lat: 39.8097343, lng: -98.5556199 };
+import AirportAutocomplete from 'components/AirportAutocomplete/AirportAutocomplete';
+import DistanceMessage from 'components/DistanceMessage/DistanceMessage';
+import PageWrapper from 'components/Layout/PageWrapper';
+import MyGoogleMap from 'components/MyGoogleMap/MyGoogleMap';
+import { getAirports } from 'services/airports.service';
+import { AirportDTO } from 'types/AirportType';
+import { getDistanceFromLatLon } from 'utils/distance.utils';
 
 const Home = () => {
   const [from, setFrom] = useState<AirportDTO | null>(null);
@@ -22,23 +22,11 @@ const Home = () => {
 
   useEffect(() => {
     async function getOptions() {
-      const data = await getAirports();
-      setOptions(
-        data?.airports
-          .filter(ap => ap.active && ap.iata)
-          .sort((a, b) => {
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
-            return 0;
-          })
-      );
+      const airports = await getAirports();
+      setOptions(airports);
     }
     getOptions();
   }, []);
-
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API as string,
-  });
 
   const handleCalculateDistance = () => {
     if (from && to) {
@@ -73,45 +61,11 @@ const Home = () => {
       </Card>
 
       <Box sx={styles.distanceWrapper}>
-        {distance && from && to && (
-          <React.Fragment>
-            {'The distance between '}
-            <Typography component="span" fontWeight="bold">
-              {from.name}
-            </Typography>
-            {' and '}
-            <Typography component="span" fontWeight="bold">
-              {to.name}
-            </Typography>
-            {' is '}
-            <Typography component="span" fontWeight="bold">
-              {`${distance} NM.`}
-            </Typography>
-          </React.Fragment>
-        )}
+        <DistanceMessage distance={distance} from={from} to={to} />
       </Box>
 
       <Box sx={styles.mapWrapper}>
-        {isLoaded ? (
-          <GoogleMap
-            center={UNITED_STATES_CENTER}
-            zoom={4}
-            mapContainerStyle={{ width: '100%', height: '100%' }}
-          >
-            {from && <Marker position={{ lat: from.latitude, lng: from.longitude }} />}
-            {to && <Marker position={{ lat: to.latitude, lng: to.longitude }} />}
-            {from && to && (
-              <Polyline
-                path={[
-                  { lat: from.latitude, lng: from.longitude },
-                  { lat: to.latitude, lng: to.longitude },
-                ]}
-              />
-            )}
-          </GoogleMap>
-        ) : (
-          <React.Fragment />
-        )}
+        <MyGoogleMap from={from} to={to} />
       </Box>
     </PageWrapper>
   );

@@ -4,10 +4,11 @@ import { jsx } from '@emotion/react';
 /* eslint-disable react/jsx-props-no-spreading */
 import { Autocomplete, CircularProgress, createFilterOptions, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { AirportDTO } from 'services/airports.service';
-import AutocompleteOption from './AutocompleteOption/AutocompleteOption';
 
 import * as styles from './AirportAutocomplete.styles';
+import AutocompleteOption from './AutocompleteOption/AutocompleteOption';
+
+import { AirportDTO } from 'types/AirportType';
 
 interface AirportAutocompleteInterface {
   options: AirportDTO[];

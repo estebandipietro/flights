@@ -32,6 +32,7 @@
     }
   ],
   "rules": {
+    "import/order": ["error", { "newlines-between": "always", "alphabetize": { "order": "asc" } }],
     "react/jsx-curly-newline": ["off"],
     "operator-linebreak": ["off"],
     "import/prefer-default-export": "off",

@@ -1,5 +1,6 @@
-import Home from 'pages/Home/Home';
 import paths from './paths';
+
+import Home from 'pages/Home/Home';
 
 export interface RouteInterface {
   path: string;
