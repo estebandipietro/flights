@@ -28,7 +28,8 @@ const Home = () => {
     getOptions();
   }, []);
 
-  const handleCalculateDistance = () => {
+  const handleCalculateDistance = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (from && to) {
       const dist = getDistanceFromLatLon(from.latitude, from.longitude, to.latitude, to.longitude);
       setDistance(dist);
@@ -38,26 +39,23 @@ const Home = () => {
   return (
     <PageWrapper css={styles.pageWrapper}>
       <Card sx={styles.cardWrapper}>
-        <AirportAutocomplete
-          options={options}
-          selectedAirport={from}
-          setSelectedAirport={setFrom}
-          label="From airport"
-        />
-        <AirportAutocomplete
-          options={options}
-          selectedAirport={to}
-          setSelectedAirport={setTo}
-          label="To airport"
-        />
-        <Button
-          variant="contained"
-          sx={styles.button}
-          onClick={() => handleCalculateDistance()}
-          disabled={!from || !to}
-        >
-          Calculate distance
-        </Button>
+        <form css={styles.form} onSubmit={e => handleCalculateDistance(e)}>
+          <AirportAutocomplete
+            options={options}
+            selectedAirport={from}
+            setSelectedAirport={setFrom}
+            label="From airport"
+          />
+          <AirportAutocomplete
+            options={options}
+            selectedAirport={to}
+            setSelectedAirport={setTo}
+            label="To airport"
+          />
+          <Button type="submit" variant="contained" sx={styles.button} disabled={!from || !to}>
+            Calculate distance
+          </Button>
+        </form>
       </Card>
 
       <Box sx={styles.distanceWrapper}>

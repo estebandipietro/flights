@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import { MEDIA_QUERIES } from 'constants/constants';
+
 export const pageWrapper = () =>
   css({
     flexDirection: 'column',
@@ -12,14 +14,26 @@ export const cardWrapper = () => ({
   p: 4,
   mt: 4,
   minHeight: 120,
-  maxWidth: 1200,
-  display: 'flex',
-  flexDirection: { lg: 'row', md: 'column', s: 'column', xs: 'column' },
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '16px',
+  maxHeight: 120,
+  height: '100%',
   bgcolor: 'grey.100',
+  [`@media (max-width: ${MEDIA_QUERIES.laptop})`]: {
+    maxHeight: '100%',
+  },
 });
+
+export const form = () =>
+  css({
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '16px',
+    [`@media (max-width: ${MEDIA_QUERIES.laptop})`]: {
+      flexDirection: 'column',
+    },
+  });
 
 export const button = () => ({
   height: '100%',
@@ -34,7 +48,6 @@ export const distanceWrapper = () => ({
 
 export const mapWrapper = () => ({
   width: '100%',
-  maxWidth: 1200,
   height: '100%',
   mb: 4,
 });
