@@ -9,7 +9,7 @@ export interface RouteInterface {
 
 const routes: RouteInterface[] = [
   {
-    path: paths.index,
+    path: paths.home,
     element: <Home />,
   },
 ];

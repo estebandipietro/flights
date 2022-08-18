@@ -1,5 +1,5 @@
 const paths = {
-  index: '/',
+  home: '/',
   default: '*',
 };
 
