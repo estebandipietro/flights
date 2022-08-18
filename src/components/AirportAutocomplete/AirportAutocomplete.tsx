@@ -36,7 +36,6 @@ const AirportAutocomplete = ({
     <Autocomplete
       filterOptions={filterOptions}
       disablePortal
-      id="combo-box-demo"
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -52,7 +51,7 @@ const AirportAutocomplete = ({
       onChange={(event: React.SyntheticEvent<Element, Event>, newValue: AirportDTO | null) => {
         setSelectedAirport(newValue);
       }}
-      sx={{ width: '100%', maxWidth: 300, height: '100%' }}
+      sx={styles.autocomplete}
       renderOption={(props, option) => (
         <li {...props} css={styles.optionWrapper} key={`${option.iata}${option.name}`}>
           <AutocompleteOption option={option} />

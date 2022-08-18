@@ -1,18 +1,32 @@
+## Netlify deploy
+
+### [Deploy](https://main--incandescent-biscochitos-eae617.netlify.app/)
+
+## Considerations
+
+In this project several decisions were made to take into account
+
+- The distance between the two airports is drawn using a geodesic line and also using the best driving path.
+- The Haversine formula is used to calculate the distance between the two airports using their longitude and latitude.
+- Both autocomplete search by airport name and later by iaca code.
+- The only API used besides Maps Javascript API, is to get the list of all airports in the US. This list is the one used in the autocompletes.
+- To communicate with the API to get the airports, it is necessary to use a proxy to avoid CORS errors. The project has the development and production proxy already enabled.
+
 ## Environment Variables
 
 To run this project you need three environment variables inside an `.env` file to be placed under the `root` folder of the project.
 
 ### `REACT_APP_API_ID`
 
-Api id needed to call the api to get the airports from flightstats by Cirium
+Api id needed to call the api to get the airports from [flightstats by Cirium](https://developer.flightstats.com/)
 
 ### `REACT_APP_API_KEY`
 
-Api key needed to call the api to get the airports from flightstats by Cirium
+Api key needed to call the api to get the airports from [flightstats by Cirium](https://developer.flightstats.com/)
 
 ### `REACT_APP_GOOGLE_API`
 
-Google api key needed to display and interact with Maps JavaScript API.
+Google api key needed to display and interact with [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview)
 
 ## Available Scripts
 
