@@ -10,9 +10,10 @@ import { AirportDTO } from 'types/AirportType';
 interface MyGoogleMapProps {
   from: AirportDTO | null;
   to: AirportDTO | null;
+  onLoad: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
 }
 
-const MyGoogleMap = ({ from, to }: MyGoogleMapProps) => {
+const MyGoogleMap = ({ from, to, onLoad }: MyGoogleMapProps) => {
   const [directionsResponse, setDirectionsResponse] = useState<google.maps.DirectionsResult | null>(
     null
   );
@@ -46,6 +47,7 @@ const MyGoogleMap = ({ from, to }: MyGoogleMapProps) => {
           center={UNITED_STATES_CENTER}
           zoom={4}
           mapContainerStyle={{ width: '100%', height: '100%' }}
+          onLoad={map => onLoad(map)}
         >
           {from && <Marker position={{ lat: from.latitude, lng: from.longitude }} />}
           {to && <Marker position={{ lat: to.latitude, lng: to.longitude }} />}

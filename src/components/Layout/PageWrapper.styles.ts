@@ -4,7 +4,7 @@ export const pageWrapper = () => ({
   justifyContent: 'center',
   padding: '0 100px',
   width: '100%',
-  height: '100vh',
+  height: '100%',
   '> *': {
     width: '100%',
   },
