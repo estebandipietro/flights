@@ -38,6 +38,7 @@ const AirportAutocomplete = ({
     <Autocomplete
       filterOptions={filterOptions}
       disablePortal
+      blurOnSelect="touch"
       open={open}
       onOpen={() => {
         setOpen(true);

@@ -15,7 +15,7 @@ interface DistanceMessageProps {
 const DistanceMessage = ({ distance, from, to }: DistanceMessageProps) => (
   <React.Fragment>
     {distance && from && to && (
-      <React.Fragment>
+      <Typography>
         {'The distance between '}
         <Typography component="span" fontWeight="bold">
           {from.name}
@@ -28,7 +28,7 @@ const DistanceMessage = ({ distance, from, to }: DistanceMessageProps) => (
         <Typography component="span" fontWeight="bold">
           {`${distance} NM.`}
         </Typography>
-      </React.Fragment>
+      </Typography>
     )}
   </React.Fragment>
 );

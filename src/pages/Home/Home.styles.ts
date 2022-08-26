@@ -15,7 +15,7 @@ export const cardWrapper = () => ({
 
 export const distanceWrapper = () => ({
   textAlign: 'center',
-  minHeight: 25,
+  height: 'max-content',
 });
 
 export const mapWrapper = () => ({
