@@ -2,12 +2,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 /* eslint-disable react/jsx-props-no-spreading */
-import { Autocomplete, CircularProgress, createFilterOptions, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, FilterOptionsState, TextField } from '@mui/material';
+import { matchSorter } from 'match-sorter';
 import React, { useState } from 'react';
 
 import * as styles from './AirportAutocomplete.styles';
 import AutocompleteOption from './AutocompleteOption/AutocompleteOption';
 
+import { MAX_AUTOCOMPLETE_OPTIONS } from 'constants/constants';
 import { AirportDTO } from 'types/AirportType';
 
 interface AirportAutocompleteInterface {
@@ -26,11 +28,11 @@ const AirportAutocomplete = ({
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
 
-  const filterOptions = createFilterOptions({
-    matchFrom: 'any',
-    limit: 200,
-    stringify: (option: AirportDTO) => option.name + option.iata,
-  });
+  const filterOptions = (opts: AirportDTO[], state: FilterOptionsState<AirportDTO>) =>
+    matchSorter(opts, state.inputValue, { keys: ['iata', 'name'] }).slice(
+      0,
+      MAX_AUTOCOMPLETE_OPTIONS
+    );
 
   return (
     <Autocomplete
