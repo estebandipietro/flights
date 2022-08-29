@@ -53,6 +53,7 @@ const MyGoogleMap = ({ from, to, setMap }: MyGoogleMapProps) => {
         <GoogleMap
           center={UNITED_STATES_CENTER}
           zoom={4}
+          options={{ minZoom: 2 }}
           mapContainerStyle={{ width: '100%', height: '100%' }}
           onLoad={map => setMap(map)}
         >
